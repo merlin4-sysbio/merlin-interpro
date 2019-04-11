@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>pt.uminho.ceb.biosystems.merlin</groupId>
+  <artifactId>merlin-interpro</artifactId>
+  <version>4.0.0-SNAPSHOT</version>
+  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<pt.uminho.ceb.biosystems.merlin.version>4.0.0-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
+		<pt.uminho.ceb.biosystems.merlin.groupId>pt.uminho.ceb.biosystems.merlin</pt.uminho.ceb.biosystems.merlin.groupId>
+	</properties>
+	<repositories>
+ 	    <repository>
+			<id>nexus</id>
+			<name>Nexus BioSystems Server</name>
+			<url>https://www.bio.di.uminho.pt/nexus/content/groups/public/</url>
+		</repository> 
+  </repositories> 
+
+  <dependencies>
+  		<dependency>
+			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
+			<artifactId>merlin-utilities</artifactId>
+			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
+			<artifactId>merlin-services</artifactId>
+			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
+			<artifactId>merlin-bioapis</artifactId>
+			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
+			<artifactId>merlin-biocomponents</artifactId>
+			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
+			<artifactId>merlin-databaseConnector</artifactId>
+			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
+			<artifactId>merlin-core</artifactId>
+			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
+		</dependency>
+  </dependencies>
+  
+  	<distributionManagement>
+		<snapshotRepository>
+			<id>biosystems-snapshots</id>
+			<url>https://nexus.bio.di.uminho.pt/content/repositories/biosystems-snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>biosystems-releases</id>
+			<url>https://nexus.bio.di.uminho.pt/content/repositories/biosystems-releases</url>
+		</repository>
+	</distributionManagement>
+</project>
