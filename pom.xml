@@ -15,7 +15,7 @@
  	    <repository>
 			<id>nexus</id>
 			<name>Nexus BioSystems Server</name>
-			<url>https://www.bio.di.uminho.pt/nexus/content/groups/public/</url>
+			<url>https://nexus.bio.di.uminho.pt/content/groups/public/</url>
 		</repository> 
   </repositories> 
 
