@@ -18,6 +18,7 @@ import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.InterPro
 import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.Location;
 import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.Model;
 import pt.uminho.ceb.biosystems.merlin.database.connector.databaseAPI.HomologyAPI;
+import pt.uminho.ceb.biosystems.merlin.services.interpro.InterproServices;
 
 /**
  * @author Oscar Dias
@@ -31,6 +32,7 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 	private AtomicInteger datum;
 	private ConcurrentLinkedQueue<String> list;
 	private ConcurrentHashMap<String, Integer> auxiliaryMap;
+	private String databaseName;
 	final static Logger logger = LoggerFactory.getLogger(InterProDataLoadingServices.class);
 
 	/**
@@ -45,7 +47,7 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 	 */
 	public InterProDataLoadingServices(Statement statement, Map<String, InterProResultsList> map,
 			ConcurrentLinkedQueue<String> list, AtomicBoolean cancel, AtomicInteger sequencesCounter,
-			ConcurrentHashMap<String, Integer> auxiliaryMap) {
+			ConcurrentHashMap<String, Integer> auxiliaryMap, String databaseName) {
 
 		this.statement = statement;
 		this.cancel = cancel;
@@ -53,6 +55,7 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 		this.interProResultsLists = map;
 		this.list = list;
 		this.auxiliaryMap = auxiliaryMap;
+		this.databaseName = databaseName;
 	}
 
 	@Override
@@ -70,9 +73,8 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 					
 					logger.debug("key {} pool {}",key, this.list);
 					
-					int resultsID = HomologyAPI.loadInterProAnnotation(resultList.getQuery(), resultList.getQuerySequence(), 
-							resultList.getMostLikelyEC(), resultList.getMostLikelyLocalization(), resultList.getName(), 
-							statement);
+					int resultsID = InterproServices.loadInterProAnnotation(this.databaseName ,resultList.getQuery(), resultList.getQuerySequence(), 
+							resultList.getMostLikelyEC(), resultList.getMostLikelyLocalization(), resultList.getName());
 					
 					for(InterProResult result: resultList.getResults()) {
 						
@@ -138,6 +140,9 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 			}
 			catch (SQLException e) {
 
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
