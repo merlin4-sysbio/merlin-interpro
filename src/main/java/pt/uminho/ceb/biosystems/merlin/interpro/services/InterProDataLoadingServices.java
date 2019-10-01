@@ -18,7 +18,6 @@ import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.InterPro
 import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.Location;
 import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.Model;
 import pt.uminho.ceb.biosystems.merlin.core.utilities.Enumerators.InterproStatus;
-import pt.uminho.ceb.biosystems.merlin.database.connector.databaseAPI.HomologyAPI;
 import pt.uminho.ceb.biosystems.merlin.services.interpro.InterproServices;
 
 /**
