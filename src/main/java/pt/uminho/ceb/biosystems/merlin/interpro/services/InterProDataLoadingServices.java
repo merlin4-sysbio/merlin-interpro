@@ -100,8 +100,9 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 						
 							HomologyAPI.loadInterProResultHasEntry(resultID, entryID, statement);
 							
-							for(Xref xRef : result.getEntry().getXrefs())							
-								HomologyAPI.loadXrefs(xRef.getCategory(), xRef.getDatabase(), xRef.getName(), xRef.getId(), entryID, statement);
+							for(Xref xRef : result.getEntry().getXrefs())	
+								
+								InterproServices.loadXrefs(this.databaseName, xRef.getCategory(), xRef.getDatabase(), xRef.getName(), xRef.getId(), entryID);
 						}
 						
 						for(Location location: result.getLocation()) {
