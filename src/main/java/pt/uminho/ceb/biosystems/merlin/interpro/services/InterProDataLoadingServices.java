@@ -77,10 +77,10 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 							resultList.getMostLikelyEC(), resultList.getMostLikelyLocalization(), resultList.getName());
 					
 					for(InterProResult result: resultList.getResults()) {
-						
-						int resultID = HomologyAPI.loadInterProResult(result.getTool(), result.geteValue(), result.getScore(), 
+												
+						int resultID = InterproServices.loadInterProResult(this.databaseName, result.getTool(), result.geteValue(), result.getScore(), 
 								result.getFamily(), result.getAccession(), result.getName(), result.getEC(), result.getGOName(),
-								result.getLocalization(), result.getDatabase(), resultsID, statement);
+								result.getLocalization(), result.getDatabase(), resultsID);
 						
 						if(result.getEntry()!=null) {
 							
@@ -91,10 +91,10 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 								entryID = this.auxiliaryMap.get(resultAccession);
 								logger.debug("Entry loaded {} {}", resultAccession, entryID);
 							}
-							else {
+							else {								
+								entryID = InterproServices.loadInterProEntry(this.databaseName,resultAccession, result.getEntry().getDescription(), 
+										result.getEntry().getName(), result.getEntry().getType());
 								
-								entryID = HomologyAPI.loadInterProEntry(resultAccession, result.getEntry().getDescription(), 
-									result.getEntry().getName(), result.getEntry().getType(), statement);
 								this.auxiliaryMap.put(resultAccession, entryID);
 							}
 						
