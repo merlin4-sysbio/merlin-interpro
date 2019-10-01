@@ -17,6 +17,7 @@ import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.InterPro
 import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.InterProResultsList;
 import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.Location;
 import pt.uminho.ceb.biosystems.merlin.bioapis.externalAPI.ebi.interpro.Model;
+import pt.uminho.ceb.biosystems.merlin.core.utilities.Enumerators.InterproStatus;
 import pt.uminho.ceb.biosystems.merlin.database.connector.databaseAPI.HomologyAPI;
 import pt.uminho.ceb.biosystems.merlin.services.interpro.InterproServices;
 
@@ -97,8 +98,8 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 								
 								this.auxiliaryMap.put(resultAccession, entryID);
 							}
-						
-							HomologyAPI.loadInterProResultHasEntry(resultID, entryID, statement);
+													
+							InterproServices.loadInterProResultHasEntry(this.databaseName, resultID, entryID);
 							
 							for(Xref xRef : result.getEntry().getXrefs())	
 								
@@ -109,10 +110,10 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 						
 							float score = location.getScore();
 							float eValue = location.getEvalue();
-							
-							HomologyAPI.loadInterProLocation(location.getStart(), location.getEnd(), score, 
+														
+							InterproServices.loadInterProLocation(this.databaseName, location.getStart(), location.getEnd(), score, 
 									location.getHmmstart(), location.getHmmend(), eValue, location.getEnvstart(),
-									location.getEnvend(), location.getHmmlength(), resultID, statement);
+									location.getEnvend(), location.getHmmlength(), resultID);
 						}
 						
 						for(Model model : result.getModels()) {				
@@ -124,15 +125,17 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
   							}
   							else {
   								
-  								accession = HomologyAPI.loadInterProModel(model.getAccession(), model.getName(), model.getDescription(), statement);
+  								accession = InterproServices.loadInterProModel(this.databaseName, model.getAccession(), model.getName(), model.getDescription());
+  								
   								this.auxiliaryMap.put(accession, -1);
   								logger.debug("Model entry loaded {} ", accession);
   							}
   							
-							HomologyAPI.loadInterProResultHasModel(resultID, accession, statement);
+							InterproServices.loadInterProResultHasModel(this.databaseName, resultID, accession);
 						}
 					}
-					HomologyAPI.setInterProStatus(resultsID, "PROCESSED", statement);
+					
+					InterproServices.setInterProStatus(this.databaseName, resultsID, InterproStatus.PROCESSED.toString());
 					
 					this.datum.incrementAndGet();
 					this.setChanged();
