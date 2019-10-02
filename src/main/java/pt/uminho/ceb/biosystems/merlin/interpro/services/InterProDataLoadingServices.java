@@ -1,7 +1,6 @@
 package pt.uminho.ceb.biosystems.merlin.interpro.services;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Map;
 import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,7 +25,6 @@ import pt.uminho.ceb.biosystems.merlin.services.interpro.InterproServices;
  */
 public class InterProDataLoadingServices extends Observable implements Runnable {
 
-	private Statement statement;
 	private AtomicBoolean cancel;
 	private Map<String, InterProResultsList> interProResultsLists;
 	private AtomicInteger datum;
@@ -45,11 +43,10 @@ public class InterProDataLoadingServices extends Observable implements Runnable 
 	 * @param sequencesCounter
 	 * @param auxiliaryMap 
 	 */
-	public InterProDataLoadingServices(Statement statement, Map<String, InterProResultsList> map,
+	public InterProDataLoadingServices(Map<String, InterProResultsList> map,
 			ConcurrentLinkedQueue<String> list, AtomicBoolean cancel, AtomicInteger sequencesCounter,
 			ConcurrentHashMap<String, Integer> auxiliaryMap, String databaseName) {
 
-		this.statement = statement;
 		this.cancel = cancel;
 		this.datum = sequencesCounter;
 		this.interProResultsLists = map;
