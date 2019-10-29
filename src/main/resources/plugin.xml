@@ -1,0 +1,29 @@
+<plugin start="true">
+	<uid>merlin-interpro</uid>
+	<name>pt.uminho.ceb.biosystems.merlin.interpro</name>
+	<version>4.0.0</version>
+
+	<dependencies>
+		<dependency uid="merlin" />
+	</dependencies>
+
+	<extensions>
+	
+		<extension uid="aibench.core"
+			name="aibench.core.operation-definition"
+			class="pt.uminho.ceb.biosystems.merlin.interpro.HomologyInterPro">
+			<operation-description name="InterProScan"
+				path="10@annotation/40@enzymes/"
+				uid="operations.InterProSimilaritySearch.ID" />
+		</extension>
+
+		<extension uid="aibench.workbench"
+			name="aibench.workbench.view">
+			<icon-operation
+				operation="operations.InterProSimilaritySearch.ID"
+				icon="icons/Lifecycle/remote.png" />
+		</extension>
+		
+	</extensions>
+
+</plugin>

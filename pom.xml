@@ -1,55 +1,44 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>pt.uminho.ceb.biosystems.merlin</groupId>
-  <artifactId>merlin-interpro</artifactId>
-  <version>4.0.2-SNAPSHOT</version>
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>pt.uminho.ceb.biosystems.merlin</groupId>
+	<artifactId>merlin-interpro</artifactId>
+	<version>4.0.2-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>merlin-interpro</name>
+	<url>http://maven.apache.org</url>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
 		<pt.uminho.ceb.biosystems.merlin.version>4.0.2-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
 		<pt.uminho.ceb.biosystems.merlin.groupId>pt.uminho.ceb.biosystems.merlin</pt.uminho.ceb.biosystems.merlin.groupId>
 		<merlin.plugins.directory>${project.basedir}/../merlin-aibench/plugins</merlin.plugins.directory>
+		<slf4j.version>1.8.0-beta4</slf4j.version>
 	</properties>
+
 	<repositories>
- 	    <repository>
+		<repository>
 			<id>nexus</id>
 			<name>Nexus BioSystems Server</name>
 			<url>https://nexus.bio.di.uminho.pt/content/groups/public/</url>
-		</repository> 
-  </repositories> 
+		</repository>
 
-  <dependencies>
-  		<dependency>
-			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
-			<artifactId>merlin-utilities</artifactId>
-			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
-			<artifactId>merlin-services</artifactId>
-			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
-			<artifactId>merlin-bioapis</artifactId>
-			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
-			<artifactId>merlin-biocomponents</artifactId>
-			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
-			<artifactId>merlin-core</artifactId>
-			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
-		</dependency>
-  </dependencies>
-  <build>
-  		<plugins>
-  			<plugin>
+		<repository>
+			<id>sing-repository</id>
+			<name>SING repository</name>
+			<url>http://maven.sing-group.org/repository/maven/</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+			<plugin>
 		      <groupId>org.apache.maven.plugins</groupId>
 		      <artifactId>maven-jar-plugin</artifactId>
 		      <version>2.3.1</version>
@@ -57,10 +46,89 @@
 		        <outputDirectory>${merlin.plugins.directory}</outputDirectory>
 		      </configuration>
 		    </plugin>
-  		</plugins>
-  </build>
-  
-  	<distributionManagement>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>merlin-interpro</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>../merlin-aibench/plugins_bin/merlin-interpro</outputDirectory>
+							<resources>
+								<resource>
+									<directory>target/classes</directory>
+									<filtering>false</filtering>
+								</resource>
+								<resource>
+									<directory>src/main/resources</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<inherited>false</inherited>
+						<configuration>
+							<stripVersion>true</stripVersion>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
+			<artifactId>merlin-aibench</artifactId>
+			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>pt.uminho.ceb.biosystems.mew</groupId>
+			<artifactId>mew-utilities</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- </dependency> <groupId>org.sing_group</groupId> <artifactId>gc4s</artifactId> 
+			<version>1.2.2</version> </dependency> -->
+
+
+	</dependencies>
+
+	<distributionManagement>
 		<snapshotRepository>
 			<id>biosystems-snapshots</id>
 			<url>https://nexus.bio.di.uminho.pt/content/repositories/biosystems-snapshots</url>
@@ -70,4 +138,5 @@
 			<url>https://nexus.bio.di.uminho.pt/content/repositories/biosystems-releases</url>
 		</repository>
 	</distributionManagement>
+
 </project>
