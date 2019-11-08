@@ -21,7 +21,7 @@
 			name="aibench.workbench.view">
 			<icon-operation
 				operation="operations.InterProSimilaritySearch.ID"
-				icon="icons/Lifecycle/remote.png" />
+				icon="icons/Lifecycle/interpro_icon.png" />
 		</extension>
 		
 	</extensions>
