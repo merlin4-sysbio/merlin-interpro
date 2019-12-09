@@ -16,9 +16,10 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
-		<pt.uminho.ceb.biosystems.merlin.version>4.0.1-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
+		<pt.uminho.ceb.biosystems.merlin.version>4.0.2-RELEASE</pt.uminho.ceb.biosystems.merlin.version>
 		<pt.uminho.ceb.biosystems.merlin.groupId>pt.uminho.ceb.biosystems.merlin</pt.uminho.ceb.biosystems.merlin.groupId>
-		<merlin.plugins.directory>${project.basedir}/../merlin-aibench/plugins</merlin.plugins.directory>
+		<merlin.plugins.directory>${project.basedir}/../merlin-project/merlin-gui/plugins</merlin.plugins.directory>
+		<merlin.plugins_bin.directory>${project.basedir}/../merlin-project/merlin-gui/plugins_bin/merlin-interpro</merlin.plugins_bin.directory>
 		<slf4j.version>1.8.0-beta4</slf4j.version>
 	</properties>
 
@@ -58,7 +59,7 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>../merlin-aibench/plugins_bin/merlin-interpro</outputDirectory>
+							<outputDirectory>${merlin.plugins_bin.directory}</outputDirectory>
 							<resources>
 								<resource>
 									<directory>target/classes</directory>
@@ -109,7 +110,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${pt.uminho.ceb.biosystems.merlin.groupId}</groupId>
-			<artifactId>merlin-aibench</artifactId>
+			<artifactId>merlin-gui</artifactId>
 			<version>${pt.uminho.ceb.biosystems.merlin.version}</version>
 		</dependency>
 		<dependency>
