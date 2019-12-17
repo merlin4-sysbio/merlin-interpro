@@ -1,7 +1,7 @@
 <plugin start="false">
 	<uid>pt.uminho.ceb.biosystems.merlin.interpro</uid>
 	<name>merlin-interpro</name>
-	<version>4.0.1</version>
+	<version>4.0.2</version>
 
 	<dependencies>
 		<dependency uid="merlin" />

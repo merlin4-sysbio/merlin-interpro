@@ -5,7 +5,7 @@
 
 	<groupId>pt.uminho.ceb.biosystems.merlin</groupId>
 	<artifactId>merlin-interpro</artifactId>
-	<version>4.0.1-SNAPSHOT</version>
+	<version>4.0.2-RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>merlin-interpro</name>
