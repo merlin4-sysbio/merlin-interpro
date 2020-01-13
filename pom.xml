@@ -16,7 +16,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
-		<pt.uminho.ceb.biosystems.merlin.version>4.0.2.3-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
+		<pt.uminho.ceb.biosystems.merlin.version>4.0.2.4-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
 		<pt.uminho.ceb.biosystems.merlin.groupId>pt.uminho.ceb.biosystems.merlin</pt.uminho.ceb.biosystems.merlin.groupId>
 		<merlin.plugins.directory>${project.basedir}/../merlin-project/merlin-gui/plugins</merlin.plugins.directory>
 		<merlin.plugins_bin.directory>${project.basedir}/../merlin-project/merlin-gui/plugins_bin/merlin-interpro</merlin.plugins_bin.directory>
