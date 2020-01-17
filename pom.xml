@@ -5,7 +5,7 @@
 
 	<groupId>pt.uminho.ceb.biosystems.merlin</groupId>
 	<artifactId>merlin-interpro</artifactId>
-	<version>4.0.03-SNAPSHOT</version>
+	<version>4.0.04-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>merlin-interpro</name>
@@ -16,10 +16,11 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.build.timestamp.format>yyyy</maven.build.timestamp.format>
-		<pt.uminho.ceb.biosystems.merlin.version>4.0.03-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
+		<pt.uminho.ceb.biosystems.merlin.version>4.0.04-SNAPSHOT</pt.uminho.ceb.biosystems.merlin.version>
 		<pt.uminho.ceb.biosystems.merlin.groupId>pt.uminho.ceb.biosystems.merlin</pt.uminho.ceb.biosystems.merlin.groupId>
 		<merlin.plugins.directory>${project.basedir}/../merlin-project/merlin-gui/plugins</merlin.plugins.directory>
 		<merlin.plugins_bin.directory>${project.basedir}/../merlin-project/merlin-gui/plugins_bin/merlin-interpro</merlin.plugins_bin.directory>
+		<merlin.build.directory>${project.basedir}/../merlin-project/merlin-gui</merlin.build.directory>
 		<slf4j.version>1.8.0-beta4</slf4j.version>
 	</properties>
 
@@ -88,6 +89,18 @@
 						<inherited>false</inherited>
 						<configuration>
 							<stripVersion>true</stripVersion>
+						</configuration>
+					</execution>
+					<execution>
+						<id>list-dependencies</id>
+						<phase>install</phase>
+						<goals>
+							<goal>list</goal>
+						</goals>
+						<configuration>
+							<outputFile>${merlin.build.directory}/conf/dependenciesfiles</outputFile>
+							<outputScope>false</outputScope>
+							<appendOutput>true</appendOutput>
 						</configuration>
 					</execution>
 				</executions>
